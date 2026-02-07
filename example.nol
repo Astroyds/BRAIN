@@ -1,0 +1,84 @@
+# ============================================================
+# example.nol — Neuron Conversation Engine vocabulary & templates
+# ============================================================
+
+@section vocabulary
+
+# ── Greetings ────────────────────────────────────────────────
+hello | c_hello | synonyms:hi,hey,greetings | category:greeting | sentiment:0.5
+goodbye | c_goodbye | synonyms:bye,farewell,seeya | category:farewell | sentiment:0.1
+good morning | c_good_morning | synonyms:morning | category:greeting | sentiment:0.6
+good night | c_good_night | synonyms:night,nighty | category:farewell | sentiment:0.3
+
+# ── Questions ────────────────────────────────────────────────
+what | c_what | synonyms:whats | category:question | sentiment:0.0
+how | c_how | synonyms:howdy | category:question | sentiment:0.0
+why | c_why | synonyms:wherefore | category:question | sentiment:0.0
+who | c_who | synonyms:whom | category:question | sentiment:0.0
+where | c_where | synonyms:wherever | category:question | sentiment:0.0
+when | c_when | synonyms:whenever | category:question | sentiment:0.0
+
+# ── Emotions ─────────────────────────────────────────────────
+happy | c_happy | synonyms:glad,cheerful,joyful | category:emotion | sentiment:0.9
+sad | c_sad | synonyms:unhappy,down,blue | category:emotion | sentiment:-0.8
+angry | c_angry | synonyms:mad,furious,upset | category:emotion | sentiment:-0.9
+afraid | c_afraid | synonyms:scared,fearful,anxious | category:emotion | sentiment:-0.7
+love | c_love | synonyms:adore,cherish | category:emotion | sentiment:1.0
+hate | c_hate | synonyms:loathe,despise | category:emotion | sentiment:-1.0
+like | c_like | synonyms:enjoy,fancy | category:emotion | sentiment:0.6
+
+# ── Common ───────────────────────────────────────────────────
+yes | c_yes | synonyms:yeah,yep,sure,ok | category:affirmative | sentiment:0.3
+no | c_no | synonyms:nah,nope,never | category:negative | sentiment:-0.2
+maybe | c_maybe | synonyms:perhaps,possibly | category:hedge | sentiment:0.0
+please | c_please | synonyms:pls | category:politeness | sentiment:0.3
+thanks | c_thanks | synonyms:thank,thankyou,ty | category:gratitude | sentiment:0.7
+sorry | c_sorry | synonyms:apologies,apologize,oops | category:apology | sentiment:-0.3
+help | c_help | synonyms:assist,support,aid | category:request | sentiment:0.2
+
+# ── Topics ───────────────────────────────────────────────────
+weather | c_weather | synonyms:rain,sunny,forecast,climate | category:topic | sentiment:0.0
+time | c_time | synonyms:clock,hour,now | category:topic | sentiment:0.0
+name | c_name | synonyms:called,identity | category:topic | sentiment:0.0
+food | c_food | synonyms:eat,meal,hungry,dinner,lunch | category:topic | sentiment:0.4
+music | c_music | synonyms:song,sing,tune,melody | category:topic | sentiment:0.5
+book | c_book | synonyms:read,novel,story,literature | category:topic | sentiment:0.4
+
+# ── Actions ──────────────────────────────────────────────────
+tell | c_tell | synonyms:say,explain,describe | category:action | sentiment:0.0
+know | c_know | synonyms:understand,aware | category:action | sentiment:0.1
+think | c_think | synonyms:believe,consider,reckon | category:action | sentiment:0.0
+want | c_want | synonyms:wish,desire,need | category:action | sentiment:0.2
+feel | c_feel | synonyms:sense,emotion | category:action | sentiment:0.0
+go | c_go | synonyms:leave,depart,move | category:action | sentiment:0.0
+make | c_make | synonyms:create,build,produce | category:action | sentiment:0.2
+do | c_do | synonyms:perform,execute | category:action | sentiment:0.0
+
+# ============================================================
+@section templates
+
+# ── Response templates ───────────────────────────────────────
+greeting | Hello! How can I help you today?
+greeting | Hi there! What's on your mind?
+farewell | Goodbye! Have a wonderful day!
+farewell | See you later! Take care!
+affirmative | Great! I'm glad we agree.
+negative | I understand. Let me know if there's something else.
+question_what | That's a great question! Let me think about {concept}.
+question_how | Good question! Here's how I'd approach {concept}.
+question_why | An interesting 'why'! The reason relates to {concept}.
+unknown | Hmm, I'm not quite sure what you mean. Could you tell me more?
+unknown | I didn't catch that. Could you rephrase?
+help | Of course! I'm here to help. What do you need assistance with?
+emotion_positive | That's wonderful to hear! I'm happy for you.
+emotion_positive | How lovely! Your positivity is contagious.
+emotion_negative | I'm sorry to hear that. I'm here if you want to talk.
+emotion_negative | That sounds tough. Would you like to talk about it?
+weather | I love talking about the weather! What's it like where you are?
+name_ask | I'm the Neuron Conversation Engine. What's your name?
+name_tell | Nice to meet you! That's a great name.
+thanks | You're welcome! Happy to help.
+apology | No worries at all! Everything is fine.
+topic_food | Food is such a great topic! What's your favourite dish?
+topic_music | Music is wonderful! What kind of music do you enjoy?
+topic_book | Books are amazing! Read anything good lately?

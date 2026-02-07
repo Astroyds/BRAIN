@@ -1,0 +1,198 @@
+# ============================================================
+# example.brain — Neuron Conversation Engine graph definition
+# ============================================================
+
+@section nodes
+
+# ── Concept nodes (match vocabulary) ────────────────────────
+c_hello | type:concept | label:Hello | base_activation:0.1
+c_goodbye | type:concept | label:Goodbye | base_activation:0.1
+c_good_morning | type:concept | label:Good Morning | base_activation:0.05
+c_good_night | type:concept | label:Good Night | base_activation:0.05
+c_what | type:concept | label:What | base_activation:0.05
+c_how | type:concept | label:How | base_activation:0.05
+c_why | type:concept | label:Why | base_activation:0.05
+c_who | type:concept | label:Who | base_activation:0.05
+c_where | type:concept | label:Where | base_activation:0.05
+c_when | type:concept | label:When | base_activation:0.05
+c_happy | type:concept | label:Happy | base_activation:0.05
+c_sad | type:concept | label:Sad | base_activation:0.05
+c_angry | type:concept | label:Angry | base_activation:0.05
+c_afraid | type:concept | label:Afraid | base_activation:0.05
+c_love | type:concept | label:Love | base_activation:0.05
+c_hate | type:concept | label:Hate | base_activation:0.05
+c_like | type:concept | label:Like | base_activation:0.05
+c_yes | type:concept | label:Yes | base_activation:0.05
+c_no | type:concept | label:No | base_activation:0.05
+c_maybe | type:concept | label:Maybe | base_activation:0.05
+c_please | type:concept | label:Please | base_activation:0.05
+c_thanks | type:concept | label:Thanks | base_activation:0.05
+c_sorry | type:concept | label:Sorry | base_activation:0.05
+c_help | type:concept | label:Help | base_activation:0.05
+c_weather | type:concept | label:Weather | base_activation:0.05
+c_time | type:concept | label:Time | base_activation:0.05
+c_name | type:concept | label:Name | base_activation:0.05
+c_food | type:concept | label:Food | base_activation:0.05
+c_music | type:concept | label:Music | base_activation:0.05
+c_book | type:concept | label:Book | base_activation:0.05
+c_tell | type:concept | label:Tell | base_activation:0.05
+c_know | type:concept | label:Know | base_activation:0.05
+c_think | type:concept | label:Think | base_activation:0.05
+c_want | type:concept | label:Want | base_activation:0.05
+c_feel | type:concept | label:Feel | base_activation:0.05
+c_go | type:concept | label:Go | base_activation:0.05
+c_make | type:concept | label:Make | base_activation:0.05
+c_do | type:concept | label:Do | base_activation:0.05
+
+# ── Emotion nodes ────────────────────────────────────────────
+n_joy | type:emotion | label:Joy | base_activation:0.0
+n_sadness | type:emotion | label:Sadness | base_activation:0.0
+n_anger | type:emotion | label:Anger | base_activation:0.0
+n_fear | type:emotion | label:Fear | base_activation:0.0
+n_curiosity | type:emotion | label:Curiosity | base_activation:0.0
+
+# ── Drive nodes ──────────────────────────────────────────────
+n_social | type:drive | label:Social Drive | base_activation:0.0
+n_inform | type:drive | label:Information Drive | base_activation:0.0
+n_help | type:drive | label:Help Drive | base_activation:0.0
+
+# ── Response nodes ───────────────────────────────────────────
+r_greet | type:response | label:Greeting Response | base_activation:0.0
+r_farewell | type:response | label:Farewell Response | base_activation:0.0
+r_affirm | type:response | label:Affirmative Response | base_activation:0.0
+r_negate | type:response | label:Negative Response | base_activation:0.0
+r_question_what | type:response | label:What-Question Response | base_activation:0.0
+r_question_how | type:response | label:How-Question Response | base_activation:0.0
+r_question_why | type:response | label:Why-Question Response | base_activation:0.0
+r_help_resp | type:response | label:Help Response | base_activation:0.0
+r_emotion_pos | type:response | label:Positive Emotion Response | base_activation:0.0
+r_emotion_neg | type:response | label:Negative Emotion Response | base_activation:0.0
+r_weather | type:response | label:Weather Response | base_activation:0.0
+r_name | type:response | label:Name Response | base_activation:0.0
+r_thanks | type:response | label:Thanks Response | base_activation:0.0
+r_apology | type:response | label:Apology Response | base_activation:0.0
+r_food | type:response | label:Food Response | base_activation:0.0
+r_music | type:response | label:Music Response | base_activation:0.0
+r_book | type:response | label:Book Response | base_activation:0.0
+r_unknown | type:response | label:Unknown Response | base_activation:0.0
+
+# ============================================================
+@section edges
+
+# ── Greetings → Social drive & response ─────────────────────
+c_hello -> n_social | weight:0.8 | type:excitatory
+c_hello -> n_joy | weight:0.4 | type:excitatory
+c_hello -> r_greet | weight:0.7 | type:excitatory
+c_good_morning -> n_social | weight:0.7 | type:excitatory
+c_good_morning -> r_greet | weight:0.6 | type:excitatory
+c_goodbye -> r_farewell | weight:0.8 | type:excitatory
+c_goodbye -> n_social | weight:0.5 | type:excitatory
+c_good_night -> r_farewell | weight:0.7 | type:excitatory
+
+# ── Questions → Curiosity & information ─────────────────────
+c_what -> n_curiosity | weight:0.9 | type:excitatory
+c_what -> n_inform | weight:0.7 | type:excitatory
+c_what -> r_question_what | weight:0.6 | type:excitatory
+c_how -> n_curiosity | weight:0.8 | type:excitatory
+c_how -> n_inform | weight:0.6 | type:excitatory
+c_how -> r_question_how | weight:0.6 | type:excitatory
+c_why -> n_curiosity | weight:0.9 | type:excitatory
+c_why -> r_question_why | weight:0.7 | type:excitatory
+c_who -> n_curiosity | weight:0.7 | type:excitatory
+c_where -> n_curiosity | weight:0.7 | type:excitatory
+c_when -> n_curiosity | weight:0.6 | type:excitatory
+
+# ── Positive emotions → Joy ─────────────────────────────────
+c_happy -> n_joy | weight:0.9 | type:excitatory
+c_happy -> r_emotion_pos | weight:0.7 | type:excitatory
+c_love -> n_joy | weight:0.8 | type:excitatory
+c_love -> r_emotion_pos | weight:0.6 | type:excitatory
+c_like -> n_joy | weight:0.5 | type:excitatory
+c_like -> r_emotion_pos | weight:0.4 | type:excitatory
+
+# ── Negative emotions → Sadness / Anger / Fear ──────────────
+c_sad -> n_sadness | weight:0.9 | type:excitatory
+c_sad -> n_joy | weight:0.3 | type:inhibitory
+c_sad -> r_emotion_neg | weight:0.7 | type:excitatory
+c_angry -> n_anger | weight:0.9 | type:excitatory
+c_angry -> n_joy | weight:0.4 | type:inhibitory
+c_angry -> r_emotion_neg | weight:0.6 | type:excitatory
+c_afraid -> n_fear | weight:0.9 | type:excitatory
+c_afraid -> r_emotion_neg | weight:0.6 | type:excitatory
+c_hate -> n_anger | weight:0.7 | type:excitatory
+c_hate -> n_joy | weight:0.5 | type:inhibitory
+c_hate -> r_emotion_neg | weight:0.5 | type:excitatory
+
+# ── Affirmative / Negative ──────────────────────────────────
+c_yes -> r_affirm | weight:0.8 | type:excitatory
+c_yes -> n_social | weight:0.3 | type:excitatory
+c_no -> r_negate | weight:0.8 | type:excitatory
+
+# ── Help / Politeness ───────────────────────────────────────
+c_help -> n_help | weight:0.9 | type:excitatory
+c_help -> r_help_resp | weight:0.8 | type:excitatory
+c_please -> n_social | weight:0.4 | type:excitatory
+c_please -> n_help | weight:0.3 | type:excitatory
+c_thanks -> r_thanks | weight:0.9 | type:excitatory
+c_thanks -> n_joy | weight:0.3 | type:excitatory
+c_sorry -> r_apology | weight:0.8 | type:excitatory
+c_sorry -> n_sadness | weight:0.2 | type:excitatory
+
+# ── Topic nodes ─────────────────────────────────────────────
+c_weather -> r_weather | weight:0.8 | type:excitatory
+c_weather -> n_inform | weight:0.5 | type:excitatory
+c_name -> r_name | weight:0.8 | type:excitatory
+c_name -> n_social | weight:0.5 | type:excitatory
+c_food -> r_food | weight:0.8 | type:excitatory
+c_food -> n_joy | weight:0.3 | type:excitatory
+c_music -> r_music | weight:0.8 | type:excitatory
+c_music -> n_joy | weight:0.4 | type:excitatory
+c_book -> r_book | weight:0.8 | type:excitatory
+c_book -> n_curiosity | weight:0.4 | type:excitatory
+
+# ── Action → drive connections ──────────────────────────────
+c_tell -> n_inform | weight:0.6 | type:excitatory
+c_know -> n_inform | weight:0.7 | type:excitatory
+c_know -> n_curiosity | weight:0.5 | type:excitatory
+c_think -> n_curiosity | weight:0.6 | type:excitatory
+c_want -> n_help | weight:0.4 | type:excitatory
+c_feel -> n_joy | weight:0.2 | type:excitatory
+c_feel -> n_sadness | weight:0.2 | type:excitatory
+
+# ── Drive → response reinforcement ─────────────────────────
+n_social -> r_greet | weight:0.5 | type:excitatory
+n_curiosity -> r_question_what | weight:0.4 | type:excitatory
+n_help -> r_help_resp | weight:0.5 | type:excitatory
+n_joy -> r_emotion_pos | weight:0.5 | type:excitatory
+n_sadness -> r_emotion_neg | weight:0.5 | type:excitatory
+n_anger -> r_emotion_neg | weight:0.4 | type:excitatory
+n_fear -> r_emotion_neg | weight:0.4 | type:excitatory
+n_inform -> r_question_what | weight:0.3 | type:excitatory
+
+# ── Cross-inhibition between opposing emotions ──────────────
+n_joy -> n_sadness | weight:0.3 | type:inhibitory
+n_sadness -> n_joy | weight:0.3 | type:inhibitory
+n_anger -> n_joy | weight:0.2 | type:inhibitory
+
+# ============================================================
+@section responses
+
+# ── Response rules ───────────────────────────────────────────
+r_greet | trigger_concepts:c_hello,c_good_morning | intent:greeting | priority:10
+r_farewell | trigger_concepts:c_goodbye,c_good_night | intent:farewell | priority:10
+r_affirm | trigger_concepts:c_yes | intent:affirmative | priority:5
+r_negate | trigger_concepts:c_no | intent:negative | priority:5
+r_question_what | trigger_concepts:c_what | intent:question_what | priority:8
+r_question_how | trigger_concepts:c_how | intent:question_how | priority:8
+r_question_why | trigger_concepts:c_why | intent:question_why | priority:8
+r_help_resp | trigger_concepts:c_help,c_want | intent:help | priority:9
+r_emotion_pos | trigger_concepts:c_happy,c_love,c_like | intent:emotion_positive | priority:7
+r_emotion_neg | trigger_concepts:c_sad,c_angry,c_afraid,c_hate | intent:emotion_negative | priority:7
+r_weather | trigger_concepts:c_weather | intent:weather | priority:6
+r_name | trigger_concepts:c_name | intent:name_ask | priority:6
+r_thanks | trigger_concepts:c_thanks | intent:thanks | priority:8
+r_apology | trigger_concepts:c_sorry | intent:apology | priority:8
+r_food | trigger_concepts:c_food | intent:topic_food | priority:6
+r_music | trigger_concepts:c_music | intent:topic_music | priority:6
+r_book | trigger_concepts:c_book | intent:topic_book | priority:6
+r_unknown | trigger_concepts: | intent:unknown | priority:0
