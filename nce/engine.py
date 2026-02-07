@@ -101,6 +101,9 @@ class NCEEngine:
             mod_factor *= val
 
         for step in range(steps):
+            # Pre-compute decay factor once per step to avoid redundant exponentiation
+            decay_factor: float = decay ** step
+
             # Snapshot current activations so updates don't feed forward within a step
             updates: Dict[str, float] = {}
 
@@ -121,7 +124,7 @@ class NCEEngine:
 
                     delta: float
                     if edge.edge_type == "excitatory":
-                        delta = node.activation * edge.weight * (decay ** step)
+                        delta = node.activation * edge.weight * decay_factor
                     else:  # inhibitory
                         delta = -(node.activation * abs(edge.weight) * 0.5)
 
